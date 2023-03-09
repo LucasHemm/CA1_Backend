@@ -23,6 +23,11 @@ public class CityInfo {
     public CityInfo() {
     }
 
+    public CityInfo(String zipCode, String city) {
+        this.zipCode = zipCode;
+        this.city = city;
+    }
+
     public Set<Address> getAddresses() {
         return addresses;
     }

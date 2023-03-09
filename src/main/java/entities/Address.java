@@ -27,6 +27,12 @@ public class Address {
     public Address() {
     }
 
+    public Address(String street, String additionalInfo, CityInfo cityInfo) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.cityInfo = cityInfo;
+    }
+
     public Set<Person> getPeople() {
         return people;
     }

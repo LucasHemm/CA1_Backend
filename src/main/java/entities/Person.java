@@ -25,7 +25,7 @@ public class Person {
     @Column(name = "lastName", nullable = false, length = 45)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
@@ -37,6 +37,16 @@ public class Person {
 
     public Person() {
     }
+
+    public Person(String email, String firstName, String lastName,Set<Phone> phones, Address address) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phones = phones;
+        this.address = address;
+    }
+
+
 
     public Set<Hobby> getHobbies() {
         return hobbies;

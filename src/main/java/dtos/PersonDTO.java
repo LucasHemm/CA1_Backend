@@ -1,12 +1,14 @@
 package dtos;
 
 import entities.Person;
+import entities.Phone;
 
 import java.util.Set;
 
 public class PersonDTO {
     private int id;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private String email;
     private Set<PhoneDTO> phoneDTOS;
     private AddressDTO addressDTO;
@@ -17,7 +19,8 @@ public class PersonDTO {
 
     public PersonDTO(Person person){
         this.id = person.getId();
-        this.fullName = person.getFirstName() + " " + person.getLastName();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
         this.email = person.getEmail();
         this.phoneDTOS = PhoneDTO.getDtos(person.getPhones());
         this.addressDTO = new AddressDTO(person.getAddress());
@@ -32,12 +35,20 @@ public class PersonDTO {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -50,6 +61,15 @@ public class PersonDTO {
 
     public Set<PhoneDTO> getPhoneDTOS() {
         return phoneDTOS;
+    }
+
+    public Set<Phone> getPhones() {
+        Set<Phone> phones = null;
+        for (PhoneDTO phoneDTO : phoneDTOS) {
+            Phone phone = new Phone(phoneDTO.getNumber(), phoneDTO.getDescription());
+            phones.add(phone);
+        }
+        return phones;
     }
 
     public void setPhoneDTOS(Set<PhoneDTO> phoneDTOS) {
