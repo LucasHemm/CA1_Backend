@@ -10,6 +10,7 @@ import java.util.Set;
         @Index(name = "email_UNIQUE", columnList = "email", unique = true),
         @Index(name = "fk_Person_Address1_idx", columnList = "address_id")
 })
+
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

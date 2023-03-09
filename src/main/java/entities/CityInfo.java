@@ -5,6 +5,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "CityInfo.findByOrderByCityDesc", query = "select c from CityInfo c order by c.city DESC"),
+        @NamedQuery(name = "CityInfo.deleteAllRows", query = "delete from CityInfo")
+})
 public class CityInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +25,11 @@ public class CityInfo {
     private Set<Address> addresses = new LinkedHashSet<>();
 
     public CityInfo() {
+    }
+
+    public CityInfo(String zipCode, String city) {
+        this.zipCode = zipCode;
+        this.city = city;
     }
 
     public Set<Address> getAddresses() {

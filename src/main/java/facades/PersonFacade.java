@@ -32,18 +32,18 @@ public class PersonFacade {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
-    public PersonDTO create(PersonDTO personDTO){
-        Person person = new Person(personDTO.getFirstName(), personDTO.getLastName(), personDTO.getPhone());
-        EntityManager em = getEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(rme);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
-        return new PersonDTO();
-    }
+//
+//    public PersonDTO create(PersonDTO personDTO){
+//        Person person = new Person(personDTO.getFirstName(), personDTO.getLastName(), personDTO.getPhone());
+//        EntityManager em = getEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            em.persist(rme);
+//            em.getTransaction().commit();
+//        } finally {
+//            em.close();
+//        }
+//        return new PersonDTO();
+//    }
 
 }
