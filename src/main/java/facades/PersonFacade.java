@@ -3,6 +3,7 @@ package facades;
 import dtos.PersonDTO;
 import entities.Person;
 import entities.RenameMe;
+import mappers.PersonMapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +14,7 @@ public class PersonFacade {
     private static EntityManagerFactory emf;
 
     //Private Constructor to ensure Singleton
-    private PersonFacade() {}
+    public PersonFacade() {}
 
 
     /**
@@ -33,17 +34,22 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    public PersonDTO create(PersonDTO personDTO){
-        Person person = new Person(personDTO.getFirstName(), personDTO.getLastName(), personDTO.getPhone());
-        EntityManager em = getEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(rme);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
-        return new PersonDTO();
+    public static int getPersonCount() throws Exception{
+        return PersonMapper.getPersonCount();
     }
+
+
+//    public PersonDTO create(PersonDTO personDTO){
+//        Person person = new Person(personDTO.getFirstName(), personDTO.getLastName(), personDTO.getPhone());
+//        EntityManager em = getEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            em.persist(rme);
+//            em.getTransaction().commit();
+//        } finally {
+//            em.close();
+//        }
+//        return new PersonDTO();
+//    }
 
 }
